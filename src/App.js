@@ -9,11 +9,11 @@ function App() {
       </header>
       <nav>
         <ul>
-          <li>nav1</li>
-          <li>nav2</li>
-          <li>nav3</li>
-          <li>nav4</li>
-          <li>nav5</li>
+          <li className="glassListItem">nav1</li>
+          <li className="glassListItem">nav2</li>
+          <li className="glassListItem">nav3</li>
+          <li className="glassListItem">nav4</li>
+          <li className="glassListItem">nav5</li>
         </ul>
       </nav>
       <>

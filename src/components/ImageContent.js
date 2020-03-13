@@ -28,17 +28,6 @@ export default class ImageContent extends Component {
             //console.log(data);
             const outside = URL.createObjectURL(data);
             console.log(outside);
-            //console.log( JSON.parse(data) );
-            //this.setState({ imageView: JSON.parse(data) })
-            // let base64data = "null";
-            // var reader = new FileReader();
-            // reader.readAsDataURL(data); 
-            // reader.onloadend = function() {
-            //     base64data = reader.result;                
-            //     console.log(base64data);
-            // }
-            // const k = reader.result;
-            // console.log("1" + reader.result);
 
             this.setState((state, props) => ({
                 imageView: outside

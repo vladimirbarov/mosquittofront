@@ -11,9 +11,19 @@ export default class ImageQueue extends Component {
     }
 
     componentDidMount = () => {
+
+        console.log("***********************");
+        console.log("componentDidMount");
+        console.log("***********************");
+
         const hubConnection = new HubConnectionBuilder()
         .withUrl("http://localhost:5000/imagesqueue")
         .configureLogging(LogLevel.Debug)
+        .withAutomaticReconnect({
+            nextRetryDelayInMilliseconds: retryContext => {
+                return 5000;
+            }
+        })
         .build();
 
         this.setState({ hubConnection }, () => {
@@ -24,8 +34,12 @@ export default class ImageQueue extends Component {
         this.state.hubConnection.on('newimage', (path) => {
             console.log(`Received: '${path}';`);
 
+        var q = [...this.state.images];
+        if(q.length > 100)
+            q = [];
+
         this.setState((state, props) => ({
-            images: [...this.state.images, path],
+            images: [...q, path],
         }));
 
         this.props.newMessageHandle(path);
@@ -40,7 +54,7 @@ export default class ImageQueue extends Component {
         return (
             <ul>
                 {images.map((i)=>{
-                    return <li>{i}</li>
+                    return <li className="standardListItem">{i}</li>
                 })}
             </ul>
         )
